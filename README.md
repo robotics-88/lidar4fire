@@ -31,3 +31,26 @@ Activate the virtual environment at the start of any new terminal session:
 cd lidar4fire
 source .venv/bin/activate
 ```
+### give all the data
+If you want to run everything and get all data products, make a new folder under `data/` and copy your laz files there. For everything, you will need 2 pointclouds called `before.laz` and `after.laz`. To test, you can make a copy of the folder `data/sample`. E.g.:
+```
+cd lidar4fire
+source .venv/bin/activate
+cp data/sample data/mytest
+python run_all.py data/mytest
+```
+This creates a folder, `data/mytest/outputs`, with all the resulting GeoTIFFs computed both before and after.
+
+### just a sample plz
+If you want to run a small test on your own data, especially if the pointcloud is large, we recommend first truncating your pointclouds. Input args x_len and y_len are the lengths of the bounding box you'd like to test on in meters, counted from the lower righthand corner of the original bounding box of your pointcloud.
+```
+python scripts/truncate_las.py --x_len 100 --y_len 100 data/mytest/before.laz
+python scripts/truncate_las.py --x_len 100 --y_len 100 data/mytest/after.laz
+```
+Now you can proceed with the previous section and it'll run on your smaller dataset.
+
+Note that when you're done playing with the small dataset, you'll need to delete/move the truncated .laz files and rename the originals:
+```
+mv data/mytest/before_original.laz data/mytest/before.laz
+mv data/mytest/after_original.laz data/mytest/after.laz
+```
