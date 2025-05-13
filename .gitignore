@@ -1,0 +1,11 @@
+.venv/*
+
+# ignore everything in data/
+/data/*
+
+# but keep the sample folder itself
+!/data/sample/
+
+# and all files inside data/sample
+!/data/sample/**
+
