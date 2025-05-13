@@ -1,4 +1,5 @@
 .venv/*
+.vscode/*
 
 # ignore everything in data/
 /data/*
