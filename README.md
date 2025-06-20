@@ -37,12 +37,17 @@ If you want to run everything and get all data products, make a new folder under
 cd lidar4fire
 source .venv/bin/activate
 cp data/sample data/mytest
-python run_all.py data/mytest
+python scripts/run_all.py data/mytest
 ```
 This creates a folder, `data/mytest/outputs`, with all the resulting GeoTIFFs computed both before and after.
 
 ### just a sample plz
 If you want to run a small test on your own data, especially if the pointcloud is large, we recommend first truncating your pointclouds. Input args x_len and y_len are the lengths of the bounding box you'd like to test on in meters, counted from the lower righthand corner of the original bounding box of your pointcloud.
+
+> 🚧 Warn
+>
+>    This script renames your original files as e.g. `before_original.laz`! It then replaces your original file `before.laz` with a truncated pointcloud. Don't be alarmed that the new pointcloud with the old filename is smaller.
+
 ```
 python scripts/truncate_las.py --x_len 100 --y_len 100 data/mytest/before.laz
 python scripts/truncate_las.py --x_len 100 --y_len 100 data/mytest/after.laz
